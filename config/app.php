@@ -14,6 +14,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'api_password' => env('API_PASSWORD', 'password'),
 
     /*
     |--------------------------------------------------------------------------
