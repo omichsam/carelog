@@ -15,13 +15,13 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
+        User::create([
             'name' => 'API Credentials',
             'email' => 'api@carelog.co.ke',
             'password' => bcrypt(config('app.api_password')),
         ]);
 
-        User::factory()->create([
+        User::create([
             'name' => 'Dr. Samson Michira',
             'email' => 'omichsam@gmail.com',
             'password' => bcrypt('password')
