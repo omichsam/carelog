@@ -26,21 +26,21 @@ Everything runs on Laravel 12, so deployment is just **PHP + MySQL**.
 
 ### Web application
 
-| Category             | Capabilities                                                                                   |
-| -------------------- | ---------------------------------------------------------------------------------------------- |
-| **Authentication**   | Email / password login                                                                         |
-| **Dashboard**        | System summary details for doctors, patients, programs and enrolment breakdowns                |
-| **Patient module**   | • Register / edit patients<br>• View Patient profile<br>• Enroll patients to programs          |
-| **Programme module** | • Create / edit / delete programs<br>• Deleting a programme cascades to remove its enrollments |
-| **Search & filter**  | Gender, age group, enrolment status, program                                                   |
-| **UX niceties**      | Modal-first workflow (no page hops), responsive tables, role-based side-nav                    |
+| Category            | Capabilities                                                                                 |
+| ------------------- | -------------------------------------------------------------------------------------------- |
+| **Authentication**  | Email / password login                                                                       |
+| **Dashboard**       | System summary details for doctors, patients, programs and enrolment breakdowns              |
+| **Patient module**  | • Register / edit patients<br>• View Patient profile<br>• Enroll patients to programs        |
+| **Program module**  | • Create / edit / delete programs<br>• Deleting a program cascades to remove its enrollments |
+| **Search & filter** | Gender, age group, enrolment status, program                                                 |
+| **UX niceties**     | Modal-first workflow (no page hops), responsive tables, role-based side-nav                  |
 
 ### REST API
 
-| Verb   | Endpoint                        | Description                                                                                                                           |
-| ------ | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| `POST` | `/api/auth`                     | Accepts `email` & `password`, returns a **5-minute bearer token** on success                                                          |
-| `GET`  | `/api/patients/{patientNumber}` | Secure profile lookup (token in `Authorization: Bearer {token}`)<br>Returns patient data + programme enrollments or JSON error object |
+| Verb   | Endpoint                        | Description                                                                                                                         |
+| ------ | ------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| `POST` | `/api/auth`                     | Accepts `email` & `password`, returns a **5-minute bearer token** on success                                                        |
+| `GET`  | `/api/patients/{patientNumber}` | Secure profile lookup (token in `Authorization: Bearer {token}`)<br>Returns patient data + program enrollments or JSON error object |
 
 > **Error envelope**
 >
