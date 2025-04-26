@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\PatientController;
 use Illuminate\Support\Facades\Route;
 
 Route::controller(AuthController::class)->group(function () {
@@ -18,6 +19,14 @@ Route::middleware('web.auth')->group(function () {
         Route::get('/dashboard', 'index')->name('dashboard');
     });
 
-    Route::view('/patient', 'patient.index', ['title' => 'Patient'])->name('patient.index');
+    Route::controller(PatientController::class)->group(function () {
+        Route::get('/patient', 'index')->name('patient.index');
+        Route::prefix('/post')->group(function () {
+            Route::post('/store', 'store')->name('patient.store');
+            Route::put('/patient/{id}', 'update')->name('patient.update');
+            Route::post('/patient/{id}/enroll', 'enroll')->name('patient.enroll');
+        });
+    });
+
     Route::view('/program', 'program.index', ['title' => 'Program'])->name('program.index');
 });

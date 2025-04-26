@@ -29,7 +29,7 @@ class DashboardController extends Controller
 
             $programPercents = $this->getProgramStatusPercentages($programCount);
 
-            // top 3 programmes by total enrolments (any status)
+            // top 3 programs by total enrollments (any status)
             $topPrograms = $this->getTopPrograms(3);
 
             $topPatients = $this->getTopPatients(4);
@@ -63,7 +63,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Percentage of programmes that have ≥1 enrolment per status.
+     * Percentage of programs that have ≥1 enrolment per status.
      *
      * @return array{active: float, completed: float, dropped: float}
      */
@@ -86,7 +86,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Top N programmes ranked by total enrolments.
+     * Top N programs ranked by total enrollments.
      */
     private function getTopPrograms(int $limit = 3)
     {
@@ -106,7 +106,7 @@ class DashboardController extends Controller
     }
 
     /**
-     * Top N patients ranked by (active + completed) enrolments.
+     * Top N patients ranked by (active + completed) enrollments.
      */
     private function getTopPatients(int $limit = 4)
     {

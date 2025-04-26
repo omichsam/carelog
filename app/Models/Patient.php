@@ -20,6 +20,10 @@ class Patient extends Model
         'id_number',
     ];
 
+    protected $casts = [
+        'dob' => 'date'
+    ];
+
     protected static function boot()
     {
         parent::boot();
@@ -47,11 +51,13 @@ class Patient extends Model
         return $this->hasMany(Enrollment::class);
     }
 
-    public function enroll(Program $program, User $doctor, ?string $notes = null): void
+    public function enroll($programId, $doctorId, ?string $notes = null): void
     {
-        $this->programs()->attach($program->id, [
-            'enrolled_by' => $doctor->id,
+        $this->enrollments()->create([
+            'program_id' => $programId,
+            'enrolled_by' => $doctorId,
             'notes' => $notes,
         ]);
+
     }
 }
