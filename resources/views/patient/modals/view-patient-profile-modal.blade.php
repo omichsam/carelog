@@ -1,6 +1,6 @@
 <div class="modal fade" id="view-patient-{{ $patient->id ?? '__ID__' }}" tabindex="-1" aria-labelledby="view-patient-title"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-xl">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="view-patient-title">Patient Profile</h5>
@@ -24,17 +24,8 @@
                 <h6 class="text-uppercase">Program Enrollments</h6>
                 <hr class="my-3">
                 <ul class="list-group list-group-flush">
-                    @foreach ($patient->enrollments as $enr)
-                        <li class="list-group-item">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <strong>{{ $enr->program->name }}</strong>
-                                    <div class="small text-muted">Enrolled @ {{ $enr->enrolled_at->format('d M Y') }}
-                                    </div>
-                                </div>
-                                <span class="small">By Dr. {{ $enr->doctor->name }}</span>
-                            </div>
-                        </li>
+                    @foreach ($patient->enrollments as $enrollment)
+                        @include('patient.includes.enrollment-row', ['enrollment' => $enrollment])
                     @endforeach
                 </ul>
             </div>

@@ -11,7 +11,7 @@
 
         <div class="col-auto text-end">
             <span>
-                {{ $patient->completed_count }} Program(s)</span>
+                {{ $patient->total_enrollments }} Program(s)</span>
             </span>
 
         </div>

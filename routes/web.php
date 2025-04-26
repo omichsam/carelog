@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Web\AuthController;
 use App\Http\Controllers\Web\DashboardController;
+use App\Http\Controllers\Web\EnrollmentController;
 use App\Http\Controllers\Web\PatientController;
 use App\Http\Controllers\Web\ProgramController;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +26,6 @@ Route::middleware('web.auth')->group(function () {
         Route::prefix('/patient/post')->group(function () {
             Route::post('/store', 'store')->name('patient.store');
             Route::put('/patient/{id}', 'update')->name('patient.update');
-            Route::post('/patient/{id}/enroll', 'enroll')->name('patient.enroll');
         });
     });
 
@@ -35,6 +35,15 @@ Route::middleware('web.auth')->group(function () {
             Route::post('/store', 'store')->name('program.store');
             Route::put('/program/{id}', 'update')->name('program.update');
             Route::delete('/program/{id}', 'destroy')->name('program.destroy');
+        });
+    });
+
+
+    Route::controller(EnrollmentController::class)->group(function () {
+        Route::prefix('/enroll/post')->group(function () {
+            Route::post('/store/{id}', 'enroll')->name('patient.enroll');
+            Route::put('/update/{id}', 'update')->name('enrollment.update');
+
         });
     });
 });
