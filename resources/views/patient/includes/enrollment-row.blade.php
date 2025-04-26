@@ -14,7 +14,7 @@
             @endif
         </div>
         <div>
-            <span class="small">By Dr. {{ $enrollment->doctor->name }}</span><br>
+            <span class="small">By {{ $enrollment->doctor->name }}</span><br>
             @if ($enrollment->status == 'active')
                 <a class="btn btn-sm btn-outline-primary mt-2" data-toggle="modal"
                     href="#edit-enrol-{{ $enrollment->id }}">Update

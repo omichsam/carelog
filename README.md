@@ -1,61 +1,115 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
+<!-- Logo slot -->
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="public/assets/img/logo.svg" alt="CareLog logo" width="180"/>
 </p>
 
-## About Laravel
+# CareLog
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Modern health-information system & REST API**  
+_Built with Laravel 12_
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## What is CareLog?
 
-## Learning Laravel
+CareLog is a lightweight electronic health–record module that allows doctors to do the following:
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+-   Register and manage patients and their program enrollments
+-   Track program performance
+-   Expose patient profiles to third-party systems via a secure API
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Everything runs on Laravel 12, so deployment is just **PHP + MySQL**.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Key Features
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Web application
 
-### Premium Partners
+| Category             | Capabilities                                                                                   |
+| -------------------- | ---------------------------------------------------------------------------------------------- |
+| **Authentication**   | Email / password login                                                                         |
+| **Dashboard**        | System summary details for doctors, patients, programs and enrolment breakdowns                |
+| **Patient module**   | • Register / edit patients<br>• View Patient profile<br>• Enroll patients to programs          |
+| **Programme module** | • Create / edit / delete programs<br>• Deleting a programme cascades to remove its enrollments |
+| **Search & filter**  | Gender, age group, enrolment status, program                                                   |
+| **UX niceties**      | Modal-first workflow (no page hops), responsive tables, role-based side-nav                    |
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development/)**
-- **[Active Logic](https://activelogic.com)**
+### REST API
 
-## Contributing
+| Verb   | Endpoint                        | Description                                                                                                                           |
+| ------ | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `POST` | `/api/auth`                     | Accepts `email` & `password`, returns a **5-minute bearer token** on success                                                          |
+| `GET`  | `/api/patients/{patientNumber}` | Secure profile lookup (token in `Authorization: Bearer {token}`)<br>Returns patient data + programme enrollments or JSON error object |
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+> **Error envelope**
+>
+> ```json
+> // 401, 404, 422, 500, …
+> { "code": 404, "error": "Patient not found" }
+> ```
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Technology Stack
 
-## Security Vulnerabilities
+-   **Laravel 12** (PHP 8.3) – backend & Blade views
+-   **Laravel Sanctum** – API token auth
+-   **Bootstrap 4** – UI components & grid
+-   MySQL 8 / MariaDB 10.5+
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+---
 
-## License
+## Screenshots
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+|                                                           |                                                                 |
+| --------------------------------------------------------- | --------------------------------------------------------------- |
+| **Dashboard summary**                                     | **Patient profile with enrollments**                            |
+| <img src="public/assets/docs/dashboard.png" width="400"/> | <img src="public/assets/docs/patient_profile.png" width="400"/> |
+| **REST API RESPONSE**                                     | **PROGRAM DETAILS**                                             |
+| <img src="public/assets/docs/api.png" width="400"/>       | <img src="public/assets/docs/program_details.png" width="400"/> |
+
+---
+
+## Database Model
+
+![ERD](public/assets/docs/erd.png)
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+| Tool       | Version                     |
+| ---------- | --------------------------- |
+| PHP        | 8.3 +                       |
+| Composer   | 2 +                         |
+| Node / npm | 18 + (for front-end build)  |
+| MySQL      | 8 + (or compatible MariaDB) |
+
+### 1. Clone & install
+
+```bash
+git clone https://github.com/omichsam/carelog.git
+cd carelog
+
+cp .env.example .env      # complete the set ups
+composer install --prefer-dist
+php artisan key:generate
+```
+
+### 2. Database & seed
+
+```bash
+php artisan migrate --seed
+```
+
+### 3. Serve
+
+```bash
+php artisan serve      # http://127.0.0.1:8000
+```
+
+Login with the seeded doctor.  
+Generate an API token via `POST /api/auth`.

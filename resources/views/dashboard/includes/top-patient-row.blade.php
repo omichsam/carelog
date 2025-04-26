@@ -5,7 +5,7 @@
         </div>
 
         <div class="col">
-            <strong>{{ $patient->first_name }}{{ $patient->last_name }}</strong>
+            <strong>{{ $patient->first_name }} {{ $patient->last_name }}</strong>
             <div class="my-0 text-muted small">{{ $patient->patient_number }}</div>
         </div>
 
