@@ -7,4 +7,4 @@ use Illuminate\Support\Facades\Route;
 
 Route::post('/auth', [AuthController::class, 'login']);
 Route::middleware('api.token')
-    ->get('patients/{patient}', [PatientController::class, 'show']);
+    ->get('patients/{patientNumber}', [PatientController::class, 'show']);

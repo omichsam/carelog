@@ -23,7 +23,11 @@ class EnrollmentController extends Controller
         $enrollment = Enrollment::findOrFail($id);
 
         // Update the enrollment with the validated data
-        $enrollment->update($validatedData);
+        $enrollment->update([
+            'status' => $validatedData['status'],
+            'notes' => $validatedData['notes'],
+            'exited_at' => $validatedData['status'] != Enrollment::STATUS_ACTIVE ? now() : null,
+        ]);
 
         // Redirect back with a success message
         return redirect()->back()->with('success', 'Enrollment updated successfully.');

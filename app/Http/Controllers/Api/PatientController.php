@@ -12,19 +12,18 @@ use Throwable;
 class PatientController extends Controller
 {
 
-    public function show(string $patientId)
+    public function show(string $patientNumber)
     {
         try {
             // eager-load everything we need in a single query tree
             $patient = Patient::with([
-                'enrollments.program:id,name,description',
-                'enrollments.doctor:id,name,email',
+                'enrollments.program',
+                'enrollments.doctor',
             ])
-                ->findOrFail($patientId);
+                ->where('patient_number', $patientNumber)->firstOrFail();
 
             $response = [
                 'profile' => $patient->only([
-                    'id',
                     'patient_number',
                     'first_name',
                     'last_name',
@@ -36,12 +35,11 @@ class PatientController extends Controller
                 'enrollments' => $patient->enrollments->map(function ($enr) {
                     return [
                         'program' => [
-                            'id' => $enr->program->id,
+                            'program_number' => $enr->program->program_number,
                             'name' => $enr->program->name,
                             'description' => $enr->program->description,
                         ],
                         'doctor' => [
-                            'id' => $enr->doctor->id,
                             'name' => $enr->doctor->name,
                             'email' => $enr->doctor->email,
                         ],
