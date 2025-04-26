@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
 
 class Program extends Model
 {
@@ -12,8 +14,22 @@ class Program extends Model
         'name',
         'description',
         'is_active',
-        'created_by',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function (self $program) {
+            if (empty($program->program_number)) {
+                do {
+                    $candidate = 'PROG-' . strtoupper(Str::random(6));
+                } while (self::where('program_number', $candidate)->exists());
+
+                $program->program_number = $candidate;
+            }
+        });
+    }
 
     public function patients()
     {

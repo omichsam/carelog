@@ -23,7 +23,10 @@ class Enrollment extends Model
         'status',
     ];
 
-    protected $dates = ['enrolled_at', 'exited_at'];
+    protected $casts = [
+        'enrolled_at' => 'datetime',
+        'exited_at' => 'datetime',
+    ];
 
     public function patient()
     {

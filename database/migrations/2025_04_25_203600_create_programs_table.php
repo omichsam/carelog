@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('programs', function (Blueprint $table) {
             $table->id();
 
+            $table->text('program_number')->nullable();
             $table->string('name', 120)->unique();
             $table->text('description')->nullable();
             $table->boolean('is_active')->default(true);

@@ -9,9 +9,11 @@
             </p>
         </div>
         <div class="col-md-2">
-            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#id">Add Program</button>
+            <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#create-program">Add
+                Program</button>
         </div>
         <div class="col-md-12">
+            @include('includes.alert')
             <div class="row my-4">
                 <!-- Small table -->
                 <div class="col-md-12">
@@ -22,37 +24,15 @@
                                 <thead>
                                     <tr>
                                         <th>Program No.</th>
-                                        <th class="w-75">Name</th>
+                                        <th class="w-50">Name</th>
+                                        <th>Status</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>PR12345</td>
-                                        <td>Malaria</td>
-                                        <td>
-                                            <div class="btn-group" role="group" aria-label="Patient Actions for">
-                                                <button type="button"
-                                                    class="btn btn-sm btn-outline-primary d-flex align-items-center justify-content-center"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top"
-                                                    title="View Program Details" data-toggle="modal" data-target="#id">
-                                                    <i class="fe fe-eye fe-16"></i>
-                                                </button>
-                                                <button type="button"
-                                                    class="btn btn-sm btn-outline-secondary d-flex align-items-center justify-content-center"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Edit Program"
-                                                    data-toggle="modal" data-target="#id">
-                                                    <i class="fe fe-edit fe-16"></i>
-                                                </button>
-                                                <button type="button"
-                                                    class="btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
-                                                    data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Program"
-                                                    data-toggle="modal" data-target="#id">
-                                                    <i class="fe fe-trash fe-16"></i>
-                                                </button>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @foreach ($programs as $program)
+                                        @include('program.includes.program-row', ['program' => $program])
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
@@ -63,4 +43,10 @@
             <!-- end section -->
         </div>
     </div>
+    @include('program.modals.create-program')
+    @foreach ($programs as $program)
+        @include('program.modals.view-program-detail', ['program' => $program])
+        @include('program.modals.edit-program', ['program' => $program])
+        @include('program.modals.delete-program', ['program' => $program])
+    @endforeach
 @endsection
