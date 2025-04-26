@@ -18,8 +18,9 @@ class AuthController extends Controller
                 'password' => ['required'],
             ]);
 
+            // Check if the user exists
             if (Auth::attempt($credentials)) {
-                $user = Auth::user();
+                // Generate a new token and set its expiration time to 5 minutes
                 $expiresAt = now()->addMinutes(5);
                 $token = $request->user()->createToken('API Token', ['*'], $expiresAt);
 
