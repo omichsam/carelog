@@ -15,6 +15,7 @@ return [
 
     'name' => env('APP_NAME', 'Laravel'),
     'api_password' => env('API_PASSWORD', 'password'),
+    'api_email' => env('API_EMAIL', 'api@carelog.co.ke'),
 
     /*
     |--------------------------------------------------------------------------

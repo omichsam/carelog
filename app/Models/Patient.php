@@ -42,6 +42,11 @@ class Patient extends Model
             ->withTimestamps();
     }
 
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
+
     public function enroll(Program $program, User $doctor, ?string $notes = null): void
     {
         $this->programs()->attach($program->id, [

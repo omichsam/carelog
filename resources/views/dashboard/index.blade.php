@@ -5,8 +5,7 @@
         <div class="col-12">
             <div class="row align-items-center mb-2">
                 <div class="col">
-                    <h2 class="h5 page-title">Welcome Dr. Samson
-                        Michira</h2>
+                    <h2 class="h5 page-title">Welcome {{ $user->name }}</h2>
                 </div>
             </div>
             <!-- widgets -->
@@ -18,7 +17,7 @@
                                 <div class="col">
                                     <small class="text-muted mb-1">No.
                                         of Doctor</small>
-                                    <h3 class="card-title mb-0">1168</h3>
+                                    <h3 class="card-title mb-0">{{ $doctorCount }}</h3>
                                 </div>
                             </div> <!-- /. row -->
                         </div> <!-- /. card-body -->
@@ -31,7 +30,7 @@
                                 <div class="col">
                                     <small class="text-muted mb-1">No.
                                         of Patients</small>
-                                    <h3 class="card-title mb-0">68</h3>
+                                    <h3 class="card-title mb-0">{{ $patientCount }}</h3>
                                 </div>
                             </div> <!-- /. row -->
                         </div> <!-- /. card-body -->
@@ -44,7 +43,7 @@
                                 <div class="col">
                                     <small class="text-muted mb-1">No.
                                         of Programs</small>
-                                    <h3 class="card-title mb-0">108</h3>
+                                    <h3 class="card-title mb-0">{{ $programCount }}</h3>
                                 </div>
                             </div> <!-- /. row -->
                         </div> <!-- /. card-body -->
@@ -60,19 +59,19 @@
                         <div class="card-body px-4">
                             <div class="row border-bottom">
                                 <div class="col-4 text-center mb-3">
-                                    <p class="mb-1 small text-muted">Enrolled
-                                        Patients</p>
-                                    <span class="h3">26</span>
-                                </div>
-                                <div class="col-4 text-center mb-3">
                                     <p class="mb-1 small text-muted">Active
                                         %</p>
-                                    <span class="h3">26%</span>
+                                    <span class="h3">{{ $programPercents['active'] }}%</span>
                                 </div>
                                 <div class="col-4 text-center mb-3">
                                     <p class="mb-1 small text-muted">Completion
                                         %</p>
-                                    <span class="h3">6%</span>
+                                    <span class="h3">{{ $programPercents['completed'] }}%</span>
+                                </div>
+                                <div class="col-4 text-center mb-3">
+                                    <p class="mb-1 small text-muted">Dropped
+                                        %</p>
+                                    <span class="h3">{{ $programPercents['dropped'] }}%</span>
                                 </div>
                             </div>
                             <p class="pt-3"><strong>Popular
@@ -87,24 +86,11 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Malaria</td>
-                                        <td class="text-right">260</td>
-                                        <td class="text-right">150</td>
-                                        <td class="text-right">100</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Malaria</td>
-                                        <td class="text-right">260</td>
-                                        <td class="text-right">150</td>
-                                        <td class="text-right">100</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Malaria</td>
-                                        <td class="text-right">260</td>
-                                        <td class="text-right">150</td>
-                                        <td class="text-right">100</td>
-                                    </tr>
+                                    @foreach ($topPrograms as $program)
+                                        @include('dashboard.includes.popular-program-row', [
+                                            'program' => $program,
+                                        ])
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div> <!-- .card-body -->
@@ -118,86 +104,11 @@
                         </div>
                         <div class="card-body">
                             <div class="list-group list-group-flush my-n3">
-                                <div class="list-group-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-3 col-md-2">
-                                            <img src="assets/img/profile_holder.jpg" alt="..." class="thumbnail-sm">
-                                        </div>
-
-                                        <div class="col">
-                                            <strong>Samson
-                                                Michira</strong>
-                                            <div class="my-0 text-muted small">P123456</div>
-                                        </div>
-
-                                        <div class="col-auto text-end">
-                                            <span>
-                                                20 Programs</span>
-                                            </span>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="list-group-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-3 col-md-2">
-                                            <img src="assets/img/profile_holder.jpg" alt="..." class="thumbnail-sm">
-                                        </div>
-
-                                        <div class="col">
-                                            <strong>Samson
-                                                Michira</strong>
-                                            <div class="my-0 text-muted small">P123456</div>
-                                        </div>
-
-                                        <div class="col-auto text-end">
-                                            <span>
-                                                20 Programs</span>
-                                            </span>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="list-group-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-3 col-md-2">
-                                            <img src="assets/img/profile_holder.jpg" alt="..." class="thumbnail-sm">
-                                        </div>
-
-                                        <div class="col">
-                                            <strong>Samson
-                                                Michira</strong>
-                                            <div class="my-0 text-muted small">P123456</div>
-                                        </div>
-
-                                        <div class="col-auto text-end">
-                                            <span>
-                                                20 Programs</span>
-                                            </span>
-
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="list-group-item">
-                                    <div class="row align-items-center">
-                                        <div class="col-3 col-md-2">
-                                            <img src="assets/img/profile_holder.jpg" alt="..." class="thumbnail-sm">
-                                        </div>
-
-                                        <div class="col">
-                                            <strong>Samson
-                                                Michira</strong>
-                                            <div class="my-0 text-muted small">P123456</div>
-                                        </div>
-
-                                        <div class="col-auto text-end">
-                                            <span>
-                                                20 Programs</span>
-                                            </span>
-
-                                        </div>
-                                    </div>
-                                </div>
+                                @foreach ($topPatients as $patient)
+                                    @include('dashboard.includes.top-patient-row', [
+                                        'patient' => $patient,
+                                    ])
+                                @endforeach
                             </div> <!-- / .list-group -->
                         </div> <!-- / .card-body -->
                     </div> <!-- .card -->

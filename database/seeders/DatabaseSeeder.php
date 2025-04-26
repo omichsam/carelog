@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'API Credentials',
-            'email' => 'api@carelog.co.ke',
+            'email' => config('app.api_email'),
             'password' => bcrypt(config('app.api_password')),
         ]);
 

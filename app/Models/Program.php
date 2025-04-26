@@ -21,4 +21,9 @@ class Program extends Model
             ->withPivot(['enrolled_at', 'exited_at', 'notes', 'enrolled_by'])
             ->withTimestamps();
     }
+
+    public function enrollments()
+    {
+        return $this->hasMany(Enrollment::class);
+    }
 }

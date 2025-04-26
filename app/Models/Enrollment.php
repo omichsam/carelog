@@ -9,6 +9,10 @@ class Enrollment extends Model
 {
     use HasFactory;
 
+    public const STATUS_ACTIVE = 'active';
+    public const STATUS_COMPLETED = 'completed';
+    public const STATUS_DROPPED = 'dropped';
+
     protected $fillable = [
         'patient_id',
         'program_id',
