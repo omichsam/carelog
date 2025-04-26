@@ -20,12 +20,13 @@ class AuthController extends Controller
 
             if (Auth::attempt($credentials)) {
                 $user = Auth::user();
-                $token = $request->user()->createToken('API Token');
+                $expiresAt = now()->addMinutes(5);
+                $token = $request->user()->createToken('API Token', ['*'], $expiresAt);
 
                 return response()->json([
                     'token' => $token->plainTextToken,
                     'type' => 'Bearer',
-                    'expires_at' => $token->accessToken->expires_at,
+                    'expires_at' => $expiresAt->toDateTimeString(),
                 ], 200);
             }
 
