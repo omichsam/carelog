@@ -16,7 +16,7 @@
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Log Out</a>
+                <a class="dropdown-item" href="{{ route('logout') }}">Log Out</a>
             </div>
         </li>
     </ul>

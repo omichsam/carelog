@@ -1,25 +1,19 @@
 <?php
 
+use App\Http\Controllers\Web\AuthController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('auth.index');
-})->name('login');
+Route::controller(AuthController::class)->group(function () {
+    Route::post('post/auth', 'authenticate')->name('login.post');
+    Route::get('/', 'index')->name('login');
+});
 
-Route::get('/dashboard', function () {
-    return view('dashboard.index', [
-        'title' => 'Dashboard',
-    ]);
-})->name('dashboard');
+Route::middleware('web.auth')->group(function () {
+    Route::controller(AuthController::class)->group(function () {
+        Route::get('/logout', 'logout')->name('logout');
+    });
 
-Route::get('/patient', function () {
-    return view('patient.index', [
-        'title' => 'Patient',
-    ]);
-})->name('patient.index');
-
-Route::get('/program', function () {
-    return view('program.index', [
-        'title' => 'Program',
-    ]);
-})->name('program.index');
+    Route::view('/dashboard', 'dashboard.index', ['title' => 'Dashboard'])->name('dashboard');
+    Route::view('/patient', 'patient.index', ['title' => 'Patient'])->name('patient.index');
+    Route::view('/program', 'program.index', ['title' => 'Program'])->name('program.index');
+});
