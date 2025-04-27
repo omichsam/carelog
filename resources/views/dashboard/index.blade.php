@@ -16,7 +16,7 @@
                             <div class="row align-items-center">
                                 <div class="col">
                                     <small class="text-muted mb-1">No.
-                                        of Doctor</small>
+                                        of Doctor(s)</small>
                                     <h3 class="card-title mb-0">{{ $doctorCount }}</h3>
                                 </div>
                             </div> <!-- /. row -->
