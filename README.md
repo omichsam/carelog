@@ -71,6 +71,21 @@ Everything runs on Laravel 12, so deployment is just **PHP + MySQL**.
 
 ---
 
+
+## 🎥 System Demonstration
+
+This short video demonstrates:
+- Doctor login
+- Registering a new client
+- Creating programs (e.g., HIV, TB)
+- Enrolling clients into programs
+- Searching and viewing client profiles
+- Testing API call for fetching patient data
+
+[▶️ Watch the Demo Video Here](https://drive.google.com/drive/folders/1XrlvKuVbziGszAmkGV0ZVvrvLpTSjNDJ?usp=drive_link)
+
+---
+
 ## Database Model
 
 ![ERD](public/assets/docs/erd.png)
