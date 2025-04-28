@@ -84,6 +84,12 @@ This short video demonstrates:
 
 [▶️ Watch the Demo Video Here](https://drive.google.com/drive/folders/1XrlvKuVbziGszAmkGV0ZVvrvLpTSjNDJ?usp=drive_link)
 
+## 📑 Presentation
+
+You can view/download the project presentation here:
+
+[📥 Download CareLog Presentation (PPTX)](public\assets\docs\carelog_App_Presentation.pptx)
+
 ---
 
 ## Database Model
